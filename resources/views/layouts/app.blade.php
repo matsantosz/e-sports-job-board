@@ -10,9 +10,13 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
   </head>
-  <body class="font-sans antialiased bg-gray-300">
-    <main>
+  <body class="font-sans antialiased text-gray-700">
+    <livewire:header />
+
+    <main class="max-w-4xl mx-auto">
       {{ $slot }}
     </main>
+
+    <livewire:footer />
   </body>
 </html>
