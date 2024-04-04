@@ -1,5 +1,5 @@
 <div>
-  <div class="flex justify-center items-center gap-2 mb-6">
+  <div class="flex justify-center items-center gap-2 mb-8">
     <h2 class="text-2xl">
       @lang('Vagas em destaque')
     </h2>
@@ -10,11 +10,11 @@
   <div class="flex flex-col gap-4">
     @foreach ($jobs as $job)
       <a href="{{ $job->apply_url }}"
-        class="flex items-center gap-4 relative shadow-sm shadow-gray-400 rounded-lg py-4 pl-14 pr-4 ml-10">
+        class="flex items-center gap-4 relative shadow-sm shadow-gray-400 rounded-lg py-4 pl-14 pr-4 ml-10 hover:scale-[1.01] transition">
         <img src="{{ $job->company->logo }}" alt="{{ $job->company->name }} Logo"
           class="w-20 h-20 rounded-lg absolute -left-10">
 
-        <div class="flex justify-between items-center flex-1">
+        <div class="flex justify-between items-end flex-1">
           <div>
             <h4 class="text-sm capitalize">
               {{ $job->company->name }}
@@ -30,6 +30,14 @@
               <p class="text-sm capitalize">
                 {{ $job->location }}
               </p>
+
+              @if (isset($job->salary_min, $job->salary_max))
+                <x-filament::icon icon="heroicon-o-currency-dollar" class="w-4" />
+
+                <p class="text-sm capitalize">
+                  R${{ $job->salary_min }} - R${{ $job->salary_max }}
+                </p>
+              @endif
             </div>
           </div>
 
@@ -52,8 +60,10 @@
   </div>
 
   <div class="flex justify-center mt-8">
-    <x-primary-button class="px-6">
-      todas as vagas
-    </x-primary-button>
+    <a href="{{ route('jobs') }}" wire:navigate>
+      <x-primary-button class="px-6">
+        @lang('Todas as Vagas')
+      </x-primary-button>
+    </a>
   </div>
 </div>
