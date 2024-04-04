@@ -17,12 +17,18 @@ $login = function () {
 
     Session::regenerate();
 
-    $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
+    $this->redirectIntended(route('jobs.create', absolute: false), navigate: true);
 };
 
 ?>
 
 <div>
+  <h2 class="text-center text-lg">
+    @lang('Login')
+  </h2>
+
+  <hr class="my-4">
+
   <!-- Session Status -->
   <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -53,23 +59,31 @@ $login = function () {
         <input wire:model="form.remember" id="remember" type="checkbox" name="remember"
           class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500">
 
-        <span class="ms-2 text-sm text-gray-600">
+        <span class="ms-2 text-sm">
           {{ __('Remember me') }}
         </span>
       </label>
     </div>
 
-    <div class="flex items-center justify-end mt-4">
+    <div class="flex flex-col mt-4">
+      <x-primary-button class="w-full justify-center">
+        {{ __('Log in') }}
+      </x-primary-button>
+
       @if (Route::has('password.request'))
-        <a href="{{ route('password.request') }}" wire:navigate
-          class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <a href="{{ route('password.request') }}" wire:navigate class="text-sm text-center mt-4">
           {{ __('Forgot your password?') }}
         </a>
       @endif
-
-      <x-primary-button class="ms-3">
-        {{ __('Log in') }}
-      </x-primary-button>
     </div>
+
+    <hr class="my-4">
+
+    <span class="block text-center text-sm">
+      @lang('Não possui uma conta?')
+      <a href="{{ route('register') }}" class="font-semibold" wire:navigate>
+        @lang('Register')
+      </a>
+    </span>
   </form>
 </div>

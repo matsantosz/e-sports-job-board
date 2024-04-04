@@ -11,7 +11,7 @@ class JobListing extends Component
     {
         $jobs = WorkJob::query()
             ->with('company:id,name,logo')
-            ->orderBy('pinned', 'desc')
+            ->orderBy('featured', 'desc')
             ->latest()
             ->get();
 

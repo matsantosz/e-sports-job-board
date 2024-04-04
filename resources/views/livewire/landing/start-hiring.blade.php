@@ -11,9 +11,11 @@
     </h3>
 
     <div class="flex justify-center mt-6">
-      <x-primary-button class="px-6">
-        @lang('Começar')
-      </x-primary-button>
+      <a href="{{ route('jobs.create') }}" wire:navigate>
+        <x-primary-button class="px-6">
+          @lang('Começar')
+        </x-primary-button>
+      </a>
     </div>
   </div>
 </div>

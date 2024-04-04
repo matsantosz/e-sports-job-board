@@ -19,10 +19,8 @@ class CompanyFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'name' => $name = fake()->company(),
-            'slug' => str($name)->slug(),
+            'name' => fake()->company(),
             'email' => fake()->companyEmail(),
-            'website' => fake()->url(),
             'logo' => fake()->imageUrl(),
         ];
     }

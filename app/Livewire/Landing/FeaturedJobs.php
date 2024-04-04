@@ -11,7 +11,7 @@ class FeaturedJobs extends Component
     {
         $jobs = WorkJob::query()
             ->with('company:id,name,logo')
-            ->where('pinned', true)
+            ->where('featured', true)
             ->latest()
             ->get();
 

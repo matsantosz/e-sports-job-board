@@ -9,14 +9,12 @@
     @lang('Receba e-mails de novas vagas publicadas.')
   </span>
 
-  <div class="flex items-center gap-1">
-    <form autocomplete="off">
-      <input type="email" placeholder="{{ __('Digite seu E-mail') }}"
-        class="py-1 px-3 tracking-wide rounded-lg w-72" />
+  <form class="flex items-center gap-1" autocomplete="off">
+    <input type="email" placeholder="{{ __('Digite seu E-mail') }}"
+      class="py-1 px-3 tracking-wide rounded-lg w-72" />
 
-      <x-danger-button>
-        @lang('Assinar')
-      </x-danger-button>
-    </form>
-  </div>
+    <x-danger-button>
+      @lang('Assinar')
+    </x-danger-button>
+  </form>
 </div>

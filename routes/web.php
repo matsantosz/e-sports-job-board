@@ -6,9 +6,9 @@ Route::view('/', 'landing')->name('landing');
 
 Route::view('/jobs', 'jobs')->name('jobs');
 
-Route::view('/dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::view('/jobs/create', 'jobs-create')
+    ->middleware(['auth'])
+    ->name('jobs.create');
 
 Route::view('/profile', 'profile')
     ->middleware(['auth'])

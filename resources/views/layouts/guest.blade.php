@@ -10,13 +10,14 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
   </head>
-  <body class="font-sans antialiased bg-gray-300">
-    <div class="min-h-screen flex flex-col justify-center items-center">
+  <body class="font-sans antialiased text-gray-700">
+    <div class="min-h-screen flex flex-col justify-center items-center px-8 sm:px-0">
       <a href="/" wire:navigate>
         <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
       </a>
 
-      <div class="w-full sm:max-w-md mt-6 p-6 bg-white shadow-md overflow-hidden rounded-lg">
+      <div
+        class="w-full sm:max-w-md mt-6 p-6 bg-white shadow shadow-gray-400 overflow-hidden rounded-lg">
         {{ $slot }}
       </div>
     </div>

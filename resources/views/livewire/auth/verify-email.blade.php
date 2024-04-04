@@ -10,7 +10,7 @@ layout('layouts.guest');
 
 $sendVerification = function () {
     if (Auth::user()->hasVerifiedEmail()) {
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(default: route('jobs.create', absolute: false), navigate: true);
 
         return;
     }
@@ -39,14 +39,13 @@ $logout = function (Logout $logout) {
     </div>
   @endif
 
-  <div class="mt-4 flex items-center justify-between">
-    <x-primary-button wire:click="sendVerification">
-      {{ __('Resend Verification Email') }}
-    </x-primary-button>
+  <x-primary-button wire:click="sendVerification" class="w-full justify-center mt-4">
+    {{ __('Resend Verification Email') }}
+  </x-primary-button>
 
-    <button wire:click="logout" type="submit"
-      class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-      {{ __('Log Out') }}
-    </button>
-  </div>
+  <hr class="my-4">
+
+  <x-danger-button wire:click="logout" type="submit" class="w-full justify-center">
+    {{ __('Log Out') }}
+  </x-danger-button>
 </div>

@@ -24,7 +24,7 @@ class WorkJobFactory extends Factory
             'apply_url' => fake()->url(),
             'salary_min' => $min = fake()->numberBetween(1400, 6000),
             'salary_max' => $min + 1000,
-            'pinned' => random_int(1, 5) == 5,
+            'featured' => random_int(1, 5) == 5,
         ];
     }
 }

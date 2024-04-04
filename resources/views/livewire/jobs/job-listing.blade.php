@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      @if ($job->pinned)
+      @if ($job->featured)
         <div class="absolute top-2 right-4">
           <x-filament::icon icon="heroicon-m-check-badge" :tooltip="__('Destaque')" class="w-5" />
         </div>

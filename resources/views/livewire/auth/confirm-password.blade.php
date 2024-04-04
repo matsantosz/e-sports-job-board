@@ -29,7 +29,7 @@ $confirmPassword = function () {
 
     session(['auth.password_confirmed_at' => time()]);
 
-    $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+    $this->redirectIntended(default: route('jobs.create', absolute: false), navigate: true);
 };
 
 ?>
@@ -50,8 +50,8 @@ $confirmPassword = function () {
       <x-input-error :messages="$errors->get('password')" class="mt-2" />
     </div>
 
-    <div class="flex justify-end mt-4">
-      <x-primary-button>
+    <div class="mt-4">
+      <x-primary-button class="w-full justify-center">
         {{ __('Confirm') }}
       </x-primary-button>
     </div>

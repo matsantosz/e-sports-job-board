@@ -5,7 +5,7 @@
     </a>
 
     <div class="ml-auto">
-      <a href="" wire:navigate>
+      <a href="{{ route('jobs.create') }}" wire:navigate>
         <x-primary-button>
           @lang('Publicar Vaga')
         </x-primary-button>

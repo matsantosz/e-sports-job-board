@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('apply_url')->index();
             $table->unsignedInteger('salary_min')->index()->nullable();
             $table->unsignedInteger('salary_max')->index()->nullable();
-            $table->boolean('pinned')->default(false);
+            $table->boolean('featured')->default(false);
             $table->timestamps();
         });
     }

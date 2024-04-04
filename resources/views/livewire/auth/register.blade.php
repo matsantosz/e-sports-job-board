@@ -34,12 +34,18 @@ $register = function () {
 
     Auth::login($user);
 
-    $this->redirect(route('dashboard', absolute: false), navigate: true);
+    $this->redirect(route('jobs.create', absolute: false), navigate: true);
 };
 
 ?>
 
 <div>
+  <h2 class="text-center text-lg">
+    @lang('Register')
+  </h2>
+
+  <hr class="my-4">
+
   <form wire:submit="register">
     <!-- Name -->
     <div>
@@ -82,15 +88,19 @@ $register = function () {
       <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
     </div>
 
-    <div class="flex items-center justify-end mt-4">
-      <a href="{{ route('login') }}" wire:navigate
-        class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        {{ __('Already registered?') }}
-      </a>
-
-      <x-primary-button class="ms-4">
+    <div class="mt-4">
+      <x-primary-button class="w-full justify-center">
         {{ __('Register') }}
       </x-primary-button>
     </div>
+
+    <hr class="my-4">
+
+    <span class="block text-center text-sm">
+      @lang('Já possui uma conta?')
+      <a href="{{ route('login') }}" class="font-semibold" wire:navigate>
+        @lang('Login')
+      </a>
+    </span>
   </form>
 </div>
