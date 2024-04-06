@@ -1,4 +1,4 @@
-<header class="max-w-4xl mx-auto">
+<header class="max-w-4xl mx-auto px-6 sm:px-0">
   <nav class="flex items-center py-6">
     <a href="{{ route('landing') }}" class="text-3xl font-bold tracking-wide" wire:navigate>
       {{ config('app.name') }}

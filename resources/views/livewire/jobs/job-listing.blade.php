@@ -1,7 +1,9 @@
-<div class="flex flex-col gap-4 mb-12">
+<div class="flex flex-col gap-4 mb-12 px-6 sm:px-0">
   @foreach ($jobs as $job)
-    <a href="{{ $job->apply_url }}"
-      class="flex items-center gap-4 relative shadow-sm shadow-gray-400 rounded-lg py-4 pl-14 pr-4 ml-10 hover:scale-[1.01] transition">
+    <a href="{{ $job->apply_url }}" @class([
+        'flex items-center gap-4 relative shadow shadow-gray-400 rounded-lg py-4 pl-14 pr-4 ml-10 hover:scale-[1.01] transition',
+        'bg-gray-300' => $job->featured,
+    ])>
       <img src="{{ $job->company->logo }}" alt="{{ $job->company->name }} Logo"
         class="w-20 h-20 rounded-lg absolute -left-10">
 
@@ -23,11 +25,13 @@
             </p>
 
             @if (isset($job->salary_min, $job->salary_max))
-              <x-filament::icon icon="heroicon-o-currency-dollar" class="w-4" />
+              <div class="flex align-items gap-1 ml-1">
+                <x-filament::icon icon="heroicon-o-currency-dollar" class="w-4" />
 
-              <p class="text-sm capitalize">
-                R${{ $job->salary_min }} - R${{ $job->salary_max }}
-              </p>
+                <p class="text-sm capitalize">
+                  R${{ $job->salary_min }} - R${{ $job->salary_max }}
+                </p>
+              </div>
             @endif
           </div>
         </div>
@@ -42,8 +46,8 @@
       </div>
 
       @if ($job->featured)
-        <div class="absolute top-2 right-4">
-          <x-filament::icon icon="heroicon-m-check-badge" :tooltip="__('Destaque')" class="w-5" />
+        <div class="absolute top-4 right-4">
+          <x-filament::icon icon="heroicon-o-check-badge" class="w-5" />
         </div>
       @endif
     </a>

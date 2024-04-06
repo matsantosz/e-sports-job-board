@@ -1,3 +1,3 @@
 <x-app-layout>
-  Publicar Vaga
+    <livewire:jobs.new-job-form />
 </x-app-layout>
