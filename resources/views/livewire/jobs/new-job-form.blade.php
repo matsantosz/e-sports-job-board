@@ -1,5 +1,23 @@
-<div>
-  <form wire:submit="submit" autocomplete="off">
+<div class="flex-1">
+  <div class="mb-6 flex">
+    <button class="flex-1 flex items-center gap-2 p-5 border border-gray-500">
+      <div class="font-semibold">
+        1.
+      </div>
+
+      @lang('Formulário')
+    </button>
+
+    <button class="flex-1 flex items-center gap-2 p-5 border border-gray-300 text-gray-500">
+      <div class="font-semibold">
+        2.
+      </div>
+
+      @lang('Pagamento')
+    </button>
+  </div>
+
+  <form autocomplete="off">
     <div>
       <x-input-label for="title" :value="__('Título da Vaga')" />
 
@@ -38,8 +56,39 @@
       </label>
     </div>
 
-    <x-primary-button class="w-full justify-center">
-      {{ __('Publicar') }}
-    </x-primary-button>
+    <div id="bricks"></div>
   </form>
 </div>
+
+@script
+  <script>
+    const mp = new MercadoPago('TEST-c0693a33-d6e1-4c77-9705-287e17c8eaea')
+
+    mp.bricks().create('payment', 'bricks', {
+      initialization: {
+        amount: 100,
+        payer: {
+          email: 'miliandroxd@gmail.com'
+        }
+      },
+      customization: {
+        paymentMethods: {
+          creditCard: "all",
+          debitCard: "all",
+          ticket: "all",
+          bankTransfer: "all",
+          maxInstallments: 1
+        },
+      },
+      callbacks: {
+        onSubmit: (data) => {
+          $wire.submit()
+        },
+        onError: (error) => {
+          console.error(error)
+        },
+        onReady: () => {}
+      },
+    })
+  </script>
+@endscript

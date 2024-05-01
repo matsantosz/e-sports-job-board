@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Jobs;
 
-use App\Models\WorkJob;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use MercadoPago\Client\Preference\PreferenceClient;
 
 class NewJobForm extends Component
 {
@@ -20,16 +20,42 @@ class NewJobForm extends Component
     #[Validate('boolean')]
     public bool $featured = false;
 
+    public string $currentTab = 'form';
+
+    public function switchTab($tab): void
+    {
+        $this->currentTab = $tab;
+    }
+
     public function submit(): void
     {
         $this->validate();
 
-        WorkJob::create([
-            ...$this->all(),
-            'company_id' => 1,
+        $preference = (new PreferenceClient)->create([
+            'items' => [
+                [
+                    'title' => 'Publicar nova vaga no E-sports',
+                    'quantity' => 1,
+                    'unit_price' => 100,
+                    'currency_id' => 'BRL',
+                ],
+            ],
+            'payer' => [
+                'name' => auth()->user()->name,
+                'email' => auth()->user()->email,
+            ],
+            'payment_methods' => [
+                'installments' => 1,
+            ],
+            'back_urls' => [
+                'success' => route('jobs.create'),
+                'failure' => route('jobs.create'),
+                'pending' => route('jobs.create'),
+            ],
+            'auto_return' => 'approved',
         ]);
 
-        $this->redirect(route('jobs'), navigate: true);
+        $this->redirect($preference->init_point);
     }
 
     public function render()
